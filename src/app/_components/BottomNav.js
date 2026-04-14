@@ -88,18 +88,27 @@ export default function BottomNav() {
               <Link
                 href={item.href}
                 className={`
-                  relative flex flex-col items-center gap-0.5 px-3 text-[9px] font-medium tracking-wide uppercase transition-all duration-200
-                  ${isActive ? "text-white -translate-y-2" : "text-[#555] hover:text-[#888] py-2"}
+                  relative flex flex-col items-center gap-0.5 px-3 text-[9px] font-medium tracking-wide uppercase
+                  transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+                  ${isActive ? "text-white -translate-y-2" : "text-[#555] hover:text-[#888] py-2 translate-y-0"}
                 `}
               >
-                {isActive ? (
-                  <span className="flex items-center justify-center w-9 h-9 rounded-full bg-[#e05c45] mb-0.5">
-                    {item.icon}
-                  </span>
-                ) : (
-                  item.icon
-                )}
-                <span>{item.label}</span>
+                <span
+                  className={`
+                    flex items-center justify-center rounded-full
+                    transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+                    ${isActive
+                      ? "w-9 h-9 bg-[#e05c45] mb-0.5 scale-100 opacity-100"
+                      : "w-5 h-5 bg-transparent scale-90 opacity-100"}
+                  `}
+                >
+                  {item.icon}
+                </span>
+                <span
+                  className={`transition-all duration-300 ${isActive ? "opacity-100 translate-y-0" : "opacity-60 translate-y-0"}`}
+                >
+                  {item.label}
+                </span>
               </Link>
             </li>
           );
