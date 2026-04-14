@@ -62,37 +62,6 @@ body {
   transform: rotate(-90deg);
 }
 
-/* Bottom sheet dialog — uses browser top layer, guaranteed visible on mobile */
-dialog.project-sheet {
-  background: #111;
-  color: #e5e5e5;
-  border: none;
-  padding: 0;
-  max-width: 100%;
-  width: 100%;
-  max-height: 85dvh;
-  margin: auto auto 0;
-  border-radius: 16px 16px 0 0;
-  border-top: 1px solid rgba(224, 92, 69, 0.19);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  -webkit-overflow-scrolling: touch;
-}
-
-dialog.project-sheet::backdrop {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-@media (min-width: 640px) {
-  dialog.project-sheet {
-    max-width: 720px;
-    margin: auto;
-    border-radius: 16px;
-    border-top: none;
-    border: 1px solid rgba(224, 92, 69, 0.19);
-  }
-}
 
 /* Subtle background decoration circles */
 .bg-circle {
