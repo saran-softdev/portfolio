@@ -1,21 +1,16 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { PROJECTS } from "../_data/portfolio";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
-  const dialogRef = useRef(null);
 
   function openProject(project) {
     setSelectedProject(project);
-    document.body.style.overflow = "hidden";
-    dialogRef.current?.showModal();
   }
 
   function closeProject() {
-    dialogRef.current?.close();
-    document.body.style.overflow = "";
     setSelectedProject(null);
   }
 
@@ -85,20 +80,43 @@ export default function ProjectsSection() {
         </div>
       </div>
 
-      {/* Native dialog — renders in browser top layer, above all CSS stacking contexts */}
-      <dialog
-        ref={dialogRef}
-        className="project-sheet"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) closeProject();
-        }}
-        onClose={() => {
-          document.body.style.overflow = "";
-          setSelectedProject(null);
-        }}
-      >
-        {selectedProject?.details && (
-          <div onClick={(e) => e.stopPropagation()} style={{ display: "flex", flexDirection: "column", overflow: "hidden", maxHeight: "85dvh" }}>
+      {/* Fixed overlay — React-controlled, works on all mobile browsers */}
+      {selectedProject?.details && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
+          {/* Backdrop */}
+          <div
+            onClick={closeProject}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+            }}
+          />
+
+          {/* Sheet */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 720,
+              margin: "0 auto",
+              maxHeight: "85dvh",
+              display: "flex",
+              flexDirection: "column",
+              background: "#111",
+              borderRadius: "16px 16px 0 0",
+              borderTop: "1px solid rgba(224, 92, 69, 0.19)",
+              overflow: "hidden",
+            }}
+          >
             {/* Drag handle */}
             <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 4px" }}>
               <div style={{ width: 40, height: 4, borderRadius: 9999, background: "#333" }} />
@@ -172,9 +190,7 @@ export default function ProjectsSection() {
                           key={k}
                           className="flex items-start gap-2 text-[11px] text-[#888] leading-relaxed"
                         >
-                          <span className="text-[#e05c45] mt-0.5 shrink-0">
-                            &#x2022;
-                          </span>
+                          <span className="text-[#e05c45] mt-0.5 shrink-0">&#x2022;</span>
                           {h}
                         </li>
                       ))}
@@ -195,8 +211,8 @@ export default function ProjectsSection() {
               </div>
             </div>
           </div>
-        )}
-      </dialog>
+        </div>
+      )}
     </section>
   );
 }

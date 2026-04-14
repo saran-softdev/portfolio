@@ -51,34 +51,61 @@ export default function BottomNav() {
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.slice(1));
+    let rafId = null;
 
-    const handleScroll = () => {
-      const atBottom =
-        window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
-      if (atBottom) {
+    const update = () => {
+      const winH = window.innerHeight;
+      const scrollY = window.pageYOffset
+        || document.documentElement.scrollTop
+        || document.body.scrollTop
+        || 0;
+      const docH = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      );
+
+      // Force last section active when near bottom
+      if (scrollY + winH >= docH - 80) {
         setActiveSection(sectionIds[sectionIds.length - 1]);
         return;
       }
 
-      const offset = window.innerHeight * 0.35;
-      let current = sectionIds[0];
+      // getBoundingClientRect is always relative to actual visible viewport
+      const threshold = winH * 0.5;
+      let active = sectionIds[0];
       for (const id of sectionIds) {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= offset) {
-          current = id;
+        if (el && el.getBoundingClientRect().top <= threshold) {
+          active = id;
         }
       }
-      setActiveSection(current);
+      setActiveSection(active);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
+
+    // window scroll covers desktop + most Android
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // document scroll covers some Samsung/older Android browsers
+    document.addEventListener("scroll", onScroll, { passive: true });
+    // touchend catches final position after a finger-lift on any mobile browser
+    window.addEventListener("touchend", update, { passive: true });
+    update();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll);
+      window.removeEventListener("touchend", update);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
     <nav className="md:hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
-      <ul className="flex items-center gap-0.5 px-2 py-1.5 rounded-full bg-[#141414] border border-[#222] shadow-lg shadow-black/40">
+      <ul className="flex items-center gap-0.5 px-2 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg shadow-black/40">
         {navItems.map((item) => {
           const sectionId = item.href.slice(1);
           const isActive = activeSection === sectionId;
