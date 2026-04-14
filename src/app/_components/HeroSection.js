@@ -74,7 +74,7 @@ export default function HeroSection() {
               {/* Profile image circle */}
               <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-[#2a2a2a] shadow-2xl">
                 <Image
-                  src="/profile.jpg"
+                  src="/sarankumar.jpg"
                   alt={`${PROFILE.name} — ${PROFILE.title}`}
                   fill
                   className="object-cover object-top"

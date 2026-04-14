@@ -127,6 +127,61 @@ export const PROJECTS = [
     },
   },
   {
+    title: "Property Management System",
+    desc: "End-to-end hospitality platform for hotel operators — covers reservations, guest management, housekeeping, billing, AI-driven pricing, channel distribution, and government compliance integrations.",
+    tags: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Redis", "AI/ML"],
+    details: {
+      overview:
+        "A multi-tenant, cloud-based Property Management System designed for the hospitality industry. Enables hotel operators to manage properties, rooms, bookings, guest profiles, billing, and housekeeping from a single platform — with AI-powered revenue optimization, OTA channel distribution, and regulatory e-invoicing compliance.",
+      services: [
+        {
+          name: "Reservation & Front Desk",
+          desc: "Centralized booking engine handling direct reservations, OTA channel sync, and front-desk check-in/check-out workflows.",
+          highlights: [
+            "Real-time room availability with dynamic rate management",
+            "Walk-in, phone, and online booking with automatic confirmation",
+            "Group booking and event management with block allocation",
+            "Automated guest communication via email, SMS, and WhatsApp",
+          ],
+          tech: ["Next.js", "React", "TypeScript", "TanStack Query", "Tailwind CSS", "WebSocket"],
+        },
+        {
+          name: "Revenue & Channel Manager",
+          desc: "AI-powered pricing engine and OTA distribution hub syncing availability and rates across booking platforms.",
+          highlights: [
+            "Machine-learning demand forecasting for dynamic pricing",
+            "Two-way sync with major OTAs (Booking.com, Expedia, Agoda)",
+            "Rate parity monitoring and competitor benchmarking",
+            "Direct booking engine with custom property microsites",
+          ],
+          tech: ["NestJS", "PostgreSQL", "Redis", "Python", "TensorFlow", "REST APIs"],
+        },
+        {
+          name: "Operations & Housekeeping",
+          desc: "Staff management module covering housekeeping task assignment, maintenance tracking, and mobile PWA for on-the-go updates.",
+          highlights: [
+            "Automated room status transitions on check-in/check-out events",
+            "Task assignment with priority queues and real-time notifications",
+            "Mobile PWA for housekeeping staff with offline support",
+            "Maintenance request tracking with SLA monitoring",
+          ],
+          tech: ["Next.js", "NestJS", "PWA", "Push API", "Service Workers"],
+        },
+        {
+          name: "Billing & Compliance",
+          desc: "Financial management with folio-based billing, payment gateway integration, and government-mandated e-invoicing.",
+          highlights: [
+            "Guest folio management with split billing and group invoicing",
+            "Phase-2 e-invoicing compliance with XML/QR generation",
+            "POS integration for restaurant and minibar charges",
+            "Automated government guest-identity reporting",
+          ],
+          tech: ["NestJS", "PostgreSQL", "Prisma", "Stripe", "Node.js", "XML/XSLT"],
+        },
+      ],
+    },
+  },
+  {
     title: "Dubai Tunnel Flight Organization",
     desc: "Role-based dashboard managing complex approval workflows for flight operations.",
     tags: ["React.js", "Node.js", "MongoDB"],
