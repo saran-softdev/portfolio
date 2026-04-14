@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PROJECTS } from "../_data/portfolio";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [selectedProject]);
 
   function openProject(project) {
     setSelectedProject(project);

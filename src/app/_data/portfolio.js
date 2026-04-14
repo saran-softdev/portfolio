@@ -78,7 +78,7 @@ export const PROJECTS = [
         "A multi-service B2B travel management platform enabling travel agencies in Saudi Arabia to search, book, and manage travel products (flights, hotels, transfers, activities, and packages) through a unified system with wallet-based payments, team management, and real-time notifications.",
       services: [
         {
-          name: "hs-agent — Agency Portal",
+          name: "Agency Portal",
           desc: "Customer-facing portal for travel agencies to search/book travel products across 5 verticals (flights, hotels, transfers, activities, packages).",
           highlights: [
             "Wallet-based payment system with top-ups, ledger, and approval workflows",
@@ -89,7 +89,7 @@ export const PROJECTS = [
           tech: ["Next.js", "React", "TypeScript", "TanStack Query", "Tailwind CSS", "Radix UI", "Framer Motion", "Sentry"],
         },
         {
-          name: "hs-hub — Admin Portal",
+          name: "Admin Portal",
           desc: "Internal operations dashboard for managing agencies, contracts, finances, and catalog.",
           highlights: [
             "Hotel contract management with negotiation workflows",
@@ -100,7 +100,7 @@ export const PROJECTS = [
           tech: ["Next.js", "React", "TypeScript", "TanStack Query & Table", "Tiptap", "Recharts", "next-intl"],
         },
         {
-          name: "hs-notifications — Notification Microservice",
+          name: "Notification Microservice",
           desc: "Event-driven multi-channel notification engine (email, SMS, push, in-app).",
           highlights: [
             "Processes 25+ domain events via Google Cloud Pub/Sub",
@@ -111,7 +111,7 @@ export const PROJECTS = [
           tech: ["NestJS", "PostgreSQL", "Prisma", "Google Cloud Pub/Sub", "Nodemailer", "Winston", "Jest"],
         },
         {
-          name: "hs-api — Core Backend API",
+          name: "Core Backend API",
           desc: "Multi-tenant B2B travel platform backend serving both the Agency and Hub portals.",
           highlights: [
             "Multi-provider hotel integration with adapter pattern (WebBeds, custom contract CMS)",
